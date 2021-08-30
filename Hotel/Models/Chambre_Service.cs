@@ -16,7 +16,7 @@ namespace Hotel.Models
 
 
         /// <summary>
-        /// Methode permettant d'ajouter une chambre a la BD
+        /// Methode permettant d'appeler la methode qui ajoute une chambre a la BD
         /// </summary>
         /// <param name="Chambre2ajouter"></param>
         /// <returns></returns>
@@ -38,6 +38,54 @@ namespace Hotel.Models
 
             }
         }
+
+
+        /// <summary>
+        /// Methode permettant d'appeler la methode qui supprimer la chambre de la BD
+        /// </summary>
+        /// <param name="Chambre_ID"></param>
+        /// <returns></returns>
+        public bool Supprimer(int Chambre_ID)
+        {
+            try
+            {
+                int res = g_chambres.Supprimer(Chambre_ID);
+                if (res != 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Methode permettant d'appeler la methode qui modifier la chambre de la BD
+        /// </summary>
+        /// <param name="Chambre2modifier"></param>
+        /// <returns></returns>
+        public bool Modifier(C_Chambres_ Chambre2modifier)
+        {
+            try
+            {
+                int res = g_chambres.Modifier(Chambre2modifier.Chambre_ID, Chambre2modifier.Chambre_Type, Chambre2modifier.Chambre_Num, Chambre2modifier.Chambre_Ocupation, Chambre2modifier.Chambre_Prix);
+                if (res == 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+
+        }
+
 
         /// <summary>
         /// Methode permettant de recuperer tous les chambres de la BD

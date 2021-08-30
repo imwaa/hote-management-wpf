@@ -38,6 +38,8 @@ namespace Hotel.ViewModels
 
             /// Commandes
             ajouterCommande = new RelayCommand(Ajouter);
+            supprimerCommande = new RelayCommand(Supprimer);
+            modifierChambre = new RelayCommand(Modifier);
 
 
         }
@@ -56,6 +58,17 @@ namespace Hotel.ViewModels
             set { chambreSelectionner = value; onPropertyChanged("ChambreSelectionner"); }
         }
 
+        #region Methode qui clear la variable ChambreData
+        public void Clear()
+        {
+            ChambreData.Chambre_ID = 0;
+            ChambreData.Chambre_Num = string.Empty;
+            ChambreData.Chambre_Ocupation = "Disponible";
+            ChambreData.Chambre_Type = string.Empty;
+            ChambreData.Chambre_Prix = 0;
+        }
+
+        #endregion
 
         #region Remplissage du formulaire apartir de la Datagrid
 
@@ -105,6 +118,7 @@ namespace Hotel.ViewModels
                 {
                     RecupererChambres();
                     MessageBox.Show("Chambre Ajoutée avec succées","Succées",MessageBoxButton.OK,MessageBoxImage.Asterisk);
+                    Clear();
                 }
                 else
                 {
@@ -123,6 +137,81 @@ namespace Hotel.ViewModels
 
         #endregion
 
+        #region Suppression des Chambres de la BD
 
+        private RelayCommand supprimerCommande;
+        public RelayCommand SupprimerCommande
+        {
+            get { return supprimerCommande; }
+        }
+
+        public void Supprimer()
+        {
+            try
+            {
+                C_Chambres_ Chambre2supprimer = new C_Chambres_();
+                Chambre2supprimer = Mapping.Map(ChambreData, Chambre2supprimer);
+
+                bool IsDeleted = chambre_Service.Supprimer(Chambre2supprimer.Chambre_ID);
+
+                if (IsDeleted)
+                {
+                    RecupererChambres();
+                    MessageBox.Show("Chambre Supprimée avec succées", "Succées", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    Clear();
+                }
+                else
+                {
+                    MessageBox.Show("La chambre n'a pas été supprimée", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error); ;
+            }
+        }
+
+
+
+        #endregion
+
+        #region Modification des Chambres de la BD
+
+        private RelayCommand modifierChambre;
+
+        public RelayCommand ModifierChambre
+        {
+            get { return modifierChambre; }
+        }
+
+        public void Modifier()
+        {
+            try
+            {
+                C_Chambres_ Chambre2modifier = new C_Chambres_();
+                Chambre2modifier = Mapping.Map(ChambreData, Chambre2modifier);
+
+                bool IsModified = chambre_Service.Modifier(Chambre2modifier);
+
+                if (IsModified)
+                {
+                    RecupererChambres();
+                    MessageBox.Show("Chambre Modifiée avec succées", "Succées", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    Clear();
+                }
+                else
+                {
+                    MessageBox.Show("La chambre n'a pas été Modifiée", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error); ;
+            }
+        }
+
+        #endregion
     }
 }
