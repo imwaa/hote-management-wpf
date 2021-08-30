@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace Hotel.Commands
 {
-    class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
         private Action DoWork;

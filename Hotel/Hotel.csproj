@@ -70,6 +70,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Client_Service.cs" />
+    <Compile Include="Models\Client_wpf.cs" />
     <Compile Include="ViewModels\ChambreViewModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="Views\ChambreView.xaml.cs">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hotel.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace Hotel.Views
     /// </summary>
     public partial class ClientView : UserControl
     {
+        ClientViewModel clientViewModel = new ClientViewModel();
+
         public ClientView()
         {
+            DataContext = clientViewModel;
             InitializeComponent();
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dg_Client.SelectedIndex >= 0)
+            {
+                clientViewModel.RemplissageDuFormDg();
+            }
         }
     }
 }

@@ -25,6 +25,8 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -36,19 +38,19 @@
         <DockPanel Background="DarkBlue" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
             <StackPanel >
                 <Label Content="DARKBLUE" HorizontalAlignment="Center" Foreground="White" Height="40" FontSize="24" Margin="0,30,0,0"></Label>
-                <Label Content="HOTEL" HorizontalAlignment="Center" Foreground="White" Height="40" FontSize="24"></Label>
+                <Label Content="HOTEL" HorizontalAlignment="Center" Foreground="White" Height="40" FontSize="16"></Label>
 
-                <Button Content="Ajouter Reservation" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="DarkBlue" Height="50" Margin="5,47,5,5" FontSize="18"></Button>
-                <Button Content="Chambres" Click="ChambreView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="DarkBlue" Height="50" Margin="5" FontSize="18"></Button>
-                <Button Content="Clients" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="DarkBlue" Height="50" Margin="5" FontSize="18"></Button>
-                <Button Content="Reservations" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="DarkBlue" Height="50" Margin="5" FontSize="18"></Button>
-                <Button Content="Check-Out" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="DarkBlue" Height="50" Margin="5" FontSize="18"></Button>
+                <Button Content="Reservation" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5,15,5,5" FontSize="16"></Button>
+                <Button Content="Chambres" Click="ChambreView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
+                <Button Content="Clients" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
+                <Button Content="Reservations" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
+                <Button Content="Check-Out" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
 
             </StackPanel>
         </DockPanel>
 
 
-        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"/>
+        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="6" Content="{Binding}"/>
 
     </Grid>
 </Window>
