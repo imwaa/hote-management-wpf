@@ -39,5 +39,10 @@ namespace Hotel
             DataContext = new ClientViewModel();
 
         }
+
+        private void ReservationView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ReservationViewModel();
+        }
     }
 }

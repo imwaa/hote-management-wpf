@@ -16,6 +16,9 @@
         <DataTemplate x:Name="ClientViewTemplate" DataType="{x:Type viewmodels:ClientViewModel}">
             <views:ClientView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="ReservationViewTemplate" DataType="{x:Type viewmodels:ReservationViewModel}">
+            <views:ReservationView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
 
@@ -40,7 +43,7 @@
                 <Label Content="DARKBLUE" HorizontalAlignment="Center" Foreground="White" Height="40" FontSize="24" Margin="0,30,0,0"></Label>
                 <Label Content="HOTEL" HorizontalAlignment="Center" Foreground="White" Height="40" FontSize="16"></Label>
 
-                <Button Content="Reservation" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5,15,5,5" FontSize="16"></Button>
+                <Button Content="Reservation" Click="ReservationView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5,15,5,5" FontSize="16"></Button>
                 <Button Content="Chambres" Click="ChambreView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
                 <Button Content="Clients" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
                 <Button Content="Reservations" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>

@@ -72,13 +72,20 @@
     </ApplicationDefinition>
     <Compile Include="Models\Client_Service.cs" />
     <Compile Include="Models\Client_wpf.cs" />
+    <Compile Include="Models\Detail_Reservation_wpf.cs" />
+    <Compile Include="Models\Reservation_Service.cs" />
+    <Compile Include="Models\Reservation_wpf.cs" />
     <Compile Include="ViewModels\ChambreViewModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\ReservationViewModel.cs" />
     <Compile Include="Views\ChambreView.xaml.cs">
       <DependentUpon>ChambreView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReservationView.xaml.cs">
+      <DependentUpon>ReservationView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -99,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ClientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReservationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

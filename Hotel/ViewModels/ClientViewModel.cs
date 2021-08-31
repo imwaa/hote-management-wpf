@@ -40,7 +40,7 @@ namespace Hotel.ViewModels
             /// Commandes
             ajouterCommande = new RelayCommand(Ajouter);
             supprimerCommande = new RelayCommand(Supprimer);
-            modifierChambre = new RelayCommand(Modifier);
+            modifier = new RelayCommand(Modifier);
         }
 
         private Client_wpf clientData;
@@ -76,11 +76,9 @@ namespace Hotel.ViewModels
             ClientData = Mapping.Map(ClientSelectionner, ClientData);
         }
 
-
-
         #endregion
 
-        #region Recuperation des chambres depuis la BD
+        #region Recuperation des clients depuis la BD
 
         private ObservableCollection<Client_wpf> listeDeClients;
 
@@ -98,7 +96,7 @@ namespace Hotel.ViewModels
         #endregion
 
 
-        #region Ajout des Chambres dans la BD
+        #region Ajout des clients dans la BD
 
         private RelayCommand ajouterCommande;
         public RelayCommand AjouterCommande
@@ -137,7 +135,7 @@ namespace Hotel.ViewModels
 
         #endregion
 
-        #region Suppression des Chambres de la BD
+        #region Suppression des clients de la BD
 
         private RelayCommand supprimerCommande;
         public RelayCommand SupprimerCommande
@@ -176,13 +174,13 @@ namespace Hotel.ViewModels
 
         #endregion
 
-        #region Modification des Chambres de la BD
+        #region Modification des clients de la BD
 
-        private RelayCommand modifierChambre;
+        private RelayCommand modifier;
 
         public RelayCommand ModifierChambre
         {
-            get { return modifierChambre; }
+            get { return modifier; }
         }
 
         public void Modifier()
