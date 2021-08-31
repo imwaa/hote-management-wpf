@@ -14,6 +14,7 @@ namespace Hotel.Models
     {
 
         G_Clients_ g_clients = new G_Clients_();
+        G_Chambres_ g_chambres = new G_Chambres_();
 
 
 
@@ -44,6 +45,32 @@ namespace Hotel.Models
                 return null;
             }
 
+        }
+
+        public List<string> RecupererNumeroDesChambres(string typeChambre)
+        {
+            try
+            {
+                return g_chambres.Chercher_Chambre_Num(typeChambre);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
+
+        public int RecuperationIdChambre(string chambreNum)
+        {
+            try
+            {
+                return g_chambres.Chercher_Chambre_ID(chambreNum);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
     }
 }

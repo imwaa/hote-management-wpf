@@ -37,8 +37,11 @@ namespace Hotel.ViewModels
         public ReservationViewModel()
         {
             clientData = new Client_wpf();
+            chambreData = new Chambre_wpf();
             //Clear();
             client_Service = new Client_Service();
+            reservation_Service = new Reservation_Service();
+            chambre_Service = new Chambre_Service();
             clientSelectionner = new Client_wpf();
             TypesDeChambre = new List<string> { "simple", "double", "triple", "suite" };
             RecupererClients();
@@ -84,17 +87,6 @@ namespace Hotel.ViewModels
             set { typesDeChambre = value; onPropertyChanged("TypesDeChambre"); }
         }
 
-        private int prixChambre;
-
-        public int PrixChambre
-        {
-            get { return prixChambre; }
-            set { prixChambre = value; onPropertyChanged("PrixChambre"); }
-        }
-
-
-
-
 
         #endregion
 
@@ -115,6 +107,21 @@ namespace Hotel.ViewModels
 
         #endregion
 
+        #region Recuperation et Remplissage du formulaire avec les numero de chambre en fonction du Type de chambre
+        private List<string> listeDeNumeroDeChambres;
+
+        public List<string> ListeDeNumeroDeChambres
+        {
+            get { return listeDeNumeroDeChambres; }
+            set { listeDeNumeroDeChambres = value; onPropertyChanged("ListeDeNumeroDeChambres"); }
+        }
+
+        public void RecupererNumerosDesChambres()
+        {
+            ListeDeNumeroDeChambres = reservation_Service.RecupererNumeroDesChambres(Type_Chambre_Selectionner);
+        }
+
+        #endregion
 
         #region Remplissage du formulaire apartir de la Datagrid
 
@@ -126,6 +133,12 @@ namespace Hotel.ViewModels
         #endregion
 
         #region Remplissage du prix dans l'interface en fonction du type de chambre selectionner
+        private int prixChambre;
+        public int PrixChambre
+        {
+            get { return prixChambre; }
+            set { prixChambre = value; onPropertyChanged("PrixChambre"); }
+        }
 
         public void AffichagePrixChambre()
         {
@@ -154,6 +167,23 @@ namespace Hotel.ViewModels
             
         }
 
+
+
+        #endregion
+
+        #region Recuperation de l'id de la chambre en fonction du num de chambre chosi
+        
+        private string numeroChambre;
+        public string NumeroChambre
+        {
+            get { return numeroChambre; }
+            set { numeroChambre = value; onPropertyChanged("NumeroChambre"); }
+        }
+
+        public void RecuperererIdChambre()
+        {
+            chambreData.Chambre_ID = reservation_Service.RecuperationIdChambre(NumeroChambre);
+        }
 
 
         #endregion

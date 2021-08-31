@@ -40,6 +40,12 @@ namespace Hotel.Views
         private void TypeChambre_SelectrionChanged(object sender, SelectionChangedEventArgs e)
         {
             reservationViewModel.AffichagePrixChambre();
+            reservationViewModel.RecupererNumerosDesChambres();
+        }
+
+        private void Chambre_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            reservationViewModel.RecuperererIdChambre();
         }
     }
 }
