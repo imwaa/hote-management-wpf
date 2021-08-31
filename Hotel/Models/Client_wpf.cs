@@ -42,13 +42,6 @@ namespace Hotel.Models
         }
 
 
-        private DateTime naissance_Date;
-        public DateTime Naissance_Date
-        {
-            get { return naissance_Date; }
-            set { naissance_Date = value; OnPropertyChanged("Naissance_Date"); }
-        }
-
 
         private string adresse;
         public string Adresse
@@ -72,17 +65,6 @@ namespace Hotel.Models
             get { return gSM; }
             set { gSM = value; OnPropertyChanged("GSM"); }
         }
-
-
-        private string profession;
-        public string Profession
-        {
-            get { return profession; }
-            set { profession = value; OnPropertyChanged("Profession"); }
-        }
-
-
-
 
 
 

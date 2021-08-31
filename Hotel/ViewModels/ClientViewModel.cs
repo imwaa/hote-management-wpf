@@ -63,10 +63,8 @@ namespace Hotel.ViewModels
             ClientData.Client_ID = 0;
             ClientData.Nom = string.Empty;
             ClientData.Prenom = string.Empty;
-            ClientData.Naissance_Date = DateTime.Today;
             ClientData.Mail = string.Empty;
             ClientData.GSM = string.Empty;
-            ClientData.Profession = string.Empty;
         }
 
         #endregion

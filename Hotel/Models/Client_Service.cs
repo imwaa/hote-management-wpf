@@ -23,7 +23,7 @@ namespace Hotel.Models
         {
             try
             {
-                int res = g_clients.Ajouter(Client2ajouter.Nom,Client2ajouter.Prenom,Client2ajouter.Naissance_Date,Client2ajouter.Adresse,Client2ajouter.Mail,Client2ajouter.GSM,Client2ajouter.Profession);
+                int res = g_clients.Ajouter(Client2ajouter.Nom,Client2ajouter.Prenom,Client2ajouter.Adresse,Client2ajouter.Mail,Client2ajouter.GSM);
 
                 if (res != 0)
                     return true;
@@ -71,7 +71,7 @@ namespace Hotel.Models
         {
             try
             {
-                int res = g_clients.Modifier(Client2modifier.Client_ID, Client2modifier.Nom, Client2modifier.Prenom, Client2modifier.Naissance_Date, Client2modifier.Adresse, Client2modifier.Mail, Client2modifier.GSM, Client2modifier.Profession);
+                int res = g_clients.Modifier(Client2modifier.Client_ID, Client2modifier.Nom, Client2modifier.Prenom, Client2modifier.Adresse, Client2modifier.Mail, Client2modifier.GSM);
                 if (res == 0)
                     return true;
                 else
