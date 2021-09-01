@@ -28,45 +28,9 @@ namespace Hotel.Views
         public FactureReservation(FlowDocument facture_gen,string cheminAccessFichier, string Mail)
         {
             InitializeComponent();
-            mail2envoyer = Mail;
-            document2envoyer = facture_gen;
-            cheminAcces = cheminAccessFichier;
-
-
-            //MailMessage mail = new MailMessage();
-            //SmtpClient smtp = new SmtpClient("smtp.office365.com");
-            //mail.From = new MailAddress("walid.salhibelkacem@student.hel.be");
-            //mail.To.Add(mail2envoyer);
-            //mail.Subject = "Facture DarkBlue Hotel";
-            //mail.Body = "Merci d'avoir reservé chez DarkBlue Hotel, vous trouverez la facture en piece jointe";
-            //mail.Attachments.Add(new Attachment(cheminAcces));
-
-
-            //smtp.Port = 587;
-            //smtp.Credentials = new NetworkCredential("walid.salhibelkacem@student.hel.be", "Lidwa17893");
-            //smtp.EnableSsl = true;
-            //try
-            //{
-            //    smtp.Send(mail);
-            //    MessageBox.Show("Mail envoyé avec succés");
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-
-            //}
-
 
             facture_doc.Document = facture_gen;
 
-            //TextRange tr = new TextRange(facture_doc.Document.ContentStart, facture_doc.Document.ContentEnd);
-            //tr.Save(fs, System.Windows.DataFormats.Rtf);
-        }
-
-        private void isclicked(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }
