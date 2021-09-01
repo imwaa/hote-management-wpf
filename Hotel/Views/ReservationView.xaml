@@ -18,19 +18,19 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="64,307,0,0" TextWrapping="Wrap" Text="{Binding ClientData.Prenom, Mode=TwoWay}" VerticalAlignment="Top" Width="181"/>
 
         <Label Content="Date de reservation" HorizontalAlignment="Left" Margin="65,346,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.603,1.071"/>
-        <DatePicker HorizontalAlignment="Left" Height="25" Margin="64,370,0,0" VerticalAlignment="Top" Width="178" >
-        </DatePicker>
-
+        
+        <DatePicker HorizontalAlignment="Left" Height="25" Margin="64,370,0,0" VerticalAlignment="Top" Width="178" Text="{Binding ReservationData.Reservation_Date}" />
 
         <Label Content="Date de fin de reservation" HorizontalAlignment="Left" Margin="65,409,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Height="23" Margin="64,435,0,0" VerticalAlignment="Top" Width="181"/>
+
+        <DatePicker HorizontalAlignment="Left" Height="23" Margin="64,435,0,0" VerticalAlignment="Top" Width="181" Text="{Binding ReservationData.Fin_Reservation_Date}"/>
 
 
 
         <!--Partie chambres-->
 
         <Label Content="Type de chambre" HorizontalAlignment="Left" Margin="307,228,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Height="23" Margin="556,252,0,0" VerticalAlignment="Top" Width="181"/>
+        <ComboBox HorizontalAlignment="Left" Height="23" Margin="556,252,0,0" VerticalAlignment="Top" Width="181" ItemsSource="{Binding Path=TypesDeService}" SelectedItem="{Binding ServiceSelectionner}" SelectionChanged="Service_SelectionChanged"/>
 
         <Label Content="Chambre N°" HorizontalAlignment="Left" Margin="307,283,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.603,1.071"/>
         <ComboBox HorizontalAlignment="Left" Height="23" Margin="307,307,0,0" VerticalAlignment="Top" Width="181"
@@ -44,9 +44,9 @@
         <Label Content="Type de service" HorizontalAlignment="Left" Margin="556,228,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" Height="23" Margin="307,252,0,0" VerticalAlignment="Top" Width="181" ItemsSource="{Binding Path=TypesDeChambre}" SelectedItem="{Binding Type_Chambre_Selectionner, Mode=TwoWay}" SelectionChanged="TypeChambre_SelectrionChanged"/>
         <Label Content="Prix du service" HorizontalAlignment="Left" Margin="556,283,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.603,1.071"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="556,307,0,0" TextWrapping="Wrap" Text="{Binding ClientData.Nom, Mode=TwoWay}" VerticalAlignment="Top" Width="181"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="556,307,0,0" TextWrapping="Wrap" Text="{Binding ServicePrix, Mode=TwoWay}" VerticalAlignment="Top" Width="181"/>
         <Label Content="Quantité" HorizontalAlignment="Left" Margin="556,346,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.603,1.071"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="556,370,0,0" TextWrapping="Wrap" Text="{Binding ClientData.Nom, Mode=TwoWay}" VerticalAlignment="Top" Width="181"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="556,370,0,0" TextWrapping="Wrap" Text="{Binding QuantiteService, Mode=TwoWay}" VerticalAlignment="Top" Width="181"/>
 
         <DataGrid Name="dg_Client" HorizontalAlignment="Left" Height="133" Margin="64,76,0,0" VerticalAlignment="Top" Width="671"
                   ItemsSource="{Binding Path=ListeDeClients}" SelectedItem="{Binding ClientSelectionner, Mode=TwoWay}" SelectionChanged="DataGrid_SelectionChanged" IsReadOnly="True"></DataGrid>
@@ -54,8 +54,8 @@
 
         <!--Partie Payer-->
 
-        <TextBox HorizontalAlignment="Left" Height="33" Margin="556,435,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
-        <Button Content="Ajouter" HorizontalAlignment="Left" Height="33" Margin="359,435,0,0" VerticalAlignment="Top" Width="181" Background="#FF0021D3" Foreground="White" BorderBrush="#FF0021D3" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBox HorizontalAlignment="Left" Height="33" Margin="556,435,0,0" TextWrapping="Wrap" Text="{Binding QuantiteTotalPayer}" VerticalAlignment="Top" Width="179" FontSize="20" FontStyle="Italic" TextDecorations="{x:Null}"  />
+        <Button Content="Ajouter" HorizontalAlignment="Left" Height="33" Margin="359,435,0,0" VerticalAlignment="Top" Width="181" Background="#FF0021D3" Foreground="White" BorderBrush="#FF0021D3" FontSize="18" FontWeight="Bold" FontStyle="Italic" Command="{Binding AjouterCommande}" />
         <Label Content="Prix Totale" HorizontalAlignment="Left" Margin="556,401,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.394,-0.683" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
 
 

@@ -117,5 +117,19 @@ namespace Hotel.Models
             }
 
         }
+
+
+        public void changerOcupationChambre(Chambre_wpf chambre2changer)
+        {
+            try
+            {
+                int res = g_chambres.ModifierOcupation(chambre2changer.Chambre_ID, chambre2changer.Chambre_Ocupation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
     }
 }

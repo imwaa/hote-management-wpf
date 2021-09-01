@@ -47,5 +47,12 @@ namespace Hotel.Views
         {
             reservationViewModel.RecuperererIdChambre();
         }
+
+
+        private void Service_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            reservationViewModel.RecuperationIdPrixService();
+        }
+
     }
 }

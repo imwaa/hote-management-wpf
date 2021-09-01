@@ -10,6 +10,13 @@ using Hotel.Commands;
 using System.Collections.ObjectModel;
 using Projet_Hotel_Management_.Classes;
 using System.Windows;
+using System.IO;
+using System.Windows.Documents;
+using System.Windows.Media;
+using Hotel.Views;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Mime;
 
 namespace Hotel.ViewModels
 {
@@ -36,20 +43,45 @@ namespace Hotel.ViewModels
 
         public ReservationViewModel()
         {
+            reservationData = new Reservation_wpf();
+            ReservationData.Reservation_Date = DateTime.Now;
+            ReservationData.Fin_Reservation_Date = DateTime.Now;
             clientData = new Client_wpf();
             chambreData = new Chambre_wpf();
             //Clear();
             client_Service = new Client_Service();
             reservation_Service = new Reservation_Service();
+            
+            Detail_Reservation_Data = new Detail_Reservation_wpf();
             chambre_Service = new Chambre_Service();
             clientSelectionner = new Client_wpf();
             TypesDeChambre = new List<string> { "simple", "double", "triple", "suite" };
+            TypesDeService = new List<string> { "Petit-Dej", "All-Inclusive", "SPA", "Petit-Dej+SPA", "All-Inclusive+SPA" };
+
+
+
             RecupererClients();
             /// Commandes
-            //ajouterCommande = new RelayCommand(Ajouter);
+            ajouterCommande = new RelayCommand(Ajouter);
 
         }
         #region Proprietes
+
+        private Reservation_wpf reservationData;
+        public Reservation_wpf ReservationData
+        {
+            get { return reservationData; }
+            set { reservationData = value; onPropertyChanged("ReservationData"); }
+        }
+
+        private Detail_Reservation_wpf detail_Reservation_Data;
+
+        public Detail_Reservation_wpf Detail_Reservation_Data
+        {
+            get { return detail_Reservation_Data; }
+            set { detail_Reservation_Data = value; onPropertyChanged("Detail_Reservation_Data"); }
+        }
+
 
         private Client_wpf clientData;
         public Client_wpf ClientData
@@ -80,12 +112,46 @@ namespace Hotel.ViewModels
             set { type_Chambre_Selectionner = value; onPropertyChanged("Type_Chambre_Selectionner"); }
         }
 
+
+
         private List<string> typesDeChambre;
         public List<string> TypesDeChambre
         {
             get {return typesDeChambre; }
             set { typesDeChambre = value; onPropertyChanged("TypesDeChambre"); }
         }
+
+        private List<string> typesDeService;
+        public List<string> TypesDeService
+        {
+            get { return typesDeService; }
+            set { typesDeService = value; onPropertyChanged("TypesDeService"); }
+        }
+
+        private string serviceSelectionner;
+                
+        public string ServiceSelectionner
+        {
+            get { return serviceSelectionner; }
+            set { serviceSelectionner = value; onPropertyChanged("ServiceSelectionner"); }
+        }
+
+        private int quantiteService;
+        public int QuantiteService
+        {
+            get { return quantiteService; }
+            set { quantiteService = value; onPropertyChanged("QuantiteService"); }
+        }
+
+
+        private int quantiteTotalPayer;
+        public int QuantiteTotalPayer
+        {
+            get { return quantiteTotalPayer; }
+            set { quantiteTotalPayer = value; onPropertyChanged("QuantiteTotalPayer"); }
+        }
+
+        
 
 
         #endregion
@@ -146,18 +212,22 @@ namespace Hotel.ViewModels
             {
                 case "simple":
                     PrixChambre = 79;
+                    QuantiteTotalPayer = PrixChambre + quantiteService;
                     break;
 
                 case "double":
                     PrixChambre = 110;
+                    QuantiteTotalPayer = PrixChambre + quantiteService;
                     break;
 
                 case "triple":
                     PrixChambre = 145;
+                    QuantiteTotalPayer = PrixChambre + quantiteService;
                     break;
 
                 case "suite":
                     PrixChambre = 250;
+                    QuantiteTotalPayer = PrixChambre + quantiteService;
                     break;
 
                 default:
@@ -187,5 +257,176 @@ namespace Hotel.ViewModels
 
 
         #endregion
+
+        #region Recuperation de l'ID et du prix du service choisi
+
+        private decimal servicePrix;
+        public decimal ServicePrix
+        {
+            get { return servicePrix; }
+            set { servicePrix = value; onPropertyChanged("ServicePrix"); }
+        }
+
+        private int serviceID;
+        public int ServiceID
+        {
+            get { return serviceID; }
+            set { serviceID = value; onPropertyChanged("ServiceID"); }
+        }
+
+        public void RecuperationIdPrixService()
+        {
+            List<string> tmp = new List<string>();
+            tmp = reservation_Service.RecuperationIdPrixService(ServiceSelectionner);
+
+            ServicePrix = decimal.Parse(tmp[1]);
+            ServiceID = int.Parse(tmp[0]);
+            QuantiteTotalPayer = (int)(PrixChambre + servicePrix);
+
+
+        }
+        #endregion
+
+        #region Ajouter reservation
+
+        private RelayCommand ajouterCommande;
+
+        public RelayCommand AjouterCommande
+        {
+            get { return ajouterCommande; }
+            set { ajouterCommande = value; }
+        }
+
+        public void Ajouter()
+        {
+            try
+            {
+                /// reservation
+                ReservationData.Client_ID = ClientData.Client_ID;
+                ReservationData.Chambre_ID = ChambreData.Chambre_ID;
+
+                int reservation_id = reservation_Service.AjouterReservation(ReservationData);
+                if(reservation_id == 0)
+                {
+                    MessageBox.Show("La reservation n'a pas été ajouté", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
+                else
+                {
+                    /// ocupation chambre
+                    ChambreData.Chambre_Ocupation = "occupée";
+                    chambre_Service.changerOcupationChambre(ChambreData);
+
+                    ///detail_reservation
+                    Detail_Reservation_Data.Service_ID = ServiceID;
+                    Detail_Reservation_Data.Reservation_ID = reservation_id;
+                    Detail_Reservation_Data.DR_Prix = QuantiteTotalPayer;
+                    Detail_Reservation_Data.DR_Quantite = QuantiteService;
+
+                    reservation_Service.Ajouter_Detail_Reservation(Detail_Reservation_Data);
+
+                    MessageBox.Show("Reservation ajoutée avec success", "Succées", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+                    GenererFacture();
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error); ;
+                throw;
+            }
+
+        }
+
+        #endregion
+
+
+        #region Ajouter Facture
+
+        public void GenererFacture()
+        {
+            FlowDocument fd = new FlowDocument();
+            Paragraph p = new Paragraph(new Run("DarkBlue HOTEL"));
+            p.FontSize = 20;
+            p.TextAlignment = TextAlignment.Left;
+            p.Foreground = Brushes.DarkBlue;
+            fd.Blocks.Add(p);
+
+             p = new Paragraph(new Bold(new Run("FACTURE")));
+            p.FontSize = 18;
+            p.TextAlignment = TextAlignment.Center;
+            p.FontStyle = FontStyles.Italic;
+            fd.Blocks.Add(p);
+
+            p = new Paragraph(new Run("         "+ClientData.Nom + " " + ClientData.Prenom));
+            p.FontSize = 17;
+            fd.Blocks.Add(p);
+
+            p = new Paragraph(new Run("         Type de Chambre: " + Type_Chambre_Selectionner + " " + NumeroChambre));
+            p.FontSize = 13;
+            fd.Blocks.Add(p);
+
+            p = new Paragraph(new Run("         Type de Service: " + serviceSelectionner));
+            p.FontSize = 13;
+            fd.Blocks.Add(p);
+
+            p = new Paragraph(new Run("          Prix Totale: " + QuantiteTotalPayer+" €"));
+            p.FontSize = 15;
+            fd.Blocks.Add(p);
+
+            FileStream fs = new FileStream(@"D:\Facture"+ClientData.Nom+".rtf", FileMode.Create);
+
+            fs.Close();
+            
+
+            string filename = "D:\\Facture" + ClientData.Nom + ".rtf";
+            EnvoyerMail(filename);
+
+            FactureReservation facture = new FactureReservation(fd,filename,ClientData.Mail);
+
+            facture.ShowDialog();
+            
+
+
+        }
+
+
+        #endregion
+
+        #region Methode qui permet d'envoyer par mail la facture generee
+        public void EnvoyerMail(string cheminAccessFichier)
+        {
+            MailMessage mail = new MailMessage();
+            SmtpClient smtp = new SmtpClient("smtp.office365.com");
+            mail.From = new MailAddress("walid.salhibelkacem@student.hel.be");
+            mail.To.Add(ClientData.Mail);
+            mail.Subject = "Facture DarkBlue Hotel";
+            mail.Body = "Merci d'avoir reservé chez DarkBlue Hotel, vous trouverez la facture en piece jointe";
+            mail.Attachments.Add(new Attachment(cheminAccessFichier));
+
+
+            smtp.Port = 587;
+            smtp.Credentials = new NetworkCredential("walid.salhibelkacem@student.hel.be", "Lidwa17893");
+            smtp.EnableSsl = true;
+            try
+            {
+                smtp.Send(mail);
+                MessageBox.Show("Mail envoyé avec succés");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+        }
+
+
+        #endregion
+
     }
 }

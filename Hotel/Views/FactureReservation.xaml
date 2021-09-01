@@ -1,0 +1,20 @@
+﻿<Window x:Class="Hotel.Views.FactureReservation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.Views"
+        mc:Ignorable="d"
+        Title="FactureReservation" Height="600" Width="500">
+    <Grid>
+        <RichTextBox x:Name="facture_doc" HorizontalAlignment="Left" Height="400" Margin="10,67,0,0" VerticalAlignment="Top" Width="474">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button Content="Envoyer par mail" HorizontalAlignment="Left" Margin="122,499,0,0" VerticalAlignment="Top" Width="245" Height="40" FontFamily="Montserrat" FontSize="18" FontStyle="Italic" Background="#FF0021AE" Foreground="White" BorderBrush="#FF0021AE" Click="isclicked"/>
+        <Label Content="Facture générée" HorizontalAlignment="Left" Margin="142,25,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Montserrat" FontWeight="Bold" FontStyle="Italic"/>
+    </Grid>
+</Window>

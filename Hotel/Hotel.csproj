@@ -84,6 +84,9 @@
     <Compile Include="Views\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FactureReservation.xaml.cs">
+      <DependentUpon>FactureReservation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReservationView.xaml.cs">
       <DependentUpon>ReservationView.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ClientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FactureReservation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
