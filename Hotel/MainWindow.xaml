@@ -19,6 +19,14 @@
         <DataTemplate x:Name="ReservationViewTemplate" DataType="{x:Type viewmodels:ReservationViewModel}">
             <views:ReservationView DataContext="{Binding}"/>
         </DataTemplate>
+
+        <DataTemplate x:Name="CheckoutViewTemplate" DataType="{x:Type viewmodels:CheckoutViewModel}">
+            <views:CheckOut DataContext="{Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="MailPublicitaireViewTemplate" DataType="{x:Type viewmodels:MailPublicitaireViewModel}">
+            <views:MailPublicitaireView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
 
@@ -47,7 +55,8 @@
                 <Button Content="Chambres" Click="ChambreView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
                 <Button Content="Clients" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
                 <Button Content="Reservations" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
-                <Button Content="Check-Out" Click="ClientsView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
+                <Button Content="Check-Out" Click="CheckoutView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
+                <Button Content="Mail" Click="MailView_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5" FontSize="16"></Button>
 
             </StackPanel>
         </DockPanel>

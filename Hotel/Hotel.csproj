@@ -76,16 +76,24 @@
     <Compile Include="Models\Reservation_Service.cs" />
     <Compile Include="Models\Reservation_wpf.cs" />
     <Compile Include="ViewModels\ChambreViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\MailPublicitaireViewModel.cs" />
     <Compile Include="ViewModels\ReservationViewModel.cs" />
     <Compile Include="Views\ChambreView.xaml.cs">
       <DependentUpon>ChambreView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CheckOut.xaml.cs">
+      <DependentUpon>CheckOut.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FactureReservation.xaml.cs">
       <DependentUpon>FactureReservation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MailPublicitaireView.xaml.cs">
+      <DependentUpon>MailPublicitaireView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReservationView.xaml.cs">
       <DependentUpon>ReservationView.xaml</DependentUpon>
@@ -108,11 +116,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CheckOut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ClientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FactureReservation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MailPublicitaireView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -44,5 +44,16 @@ namespace Hotel
         {
             DataContext = new ReservationViewModel();
         }
+
+        private void CheckoutView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new CheckoutViewModel();
+
+        }
+
+        private void MailView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new MailPublicitaireViewModel();
+        }
     }
 }

@@ -119,11 +119,11 @@ namespace Hotel.Models
         }
 
 
-        public void changerOcupationChambre(Chambre_wpf chambre2changer)
+        public void changerOcupationChambre(Chambre_wpf chambre2changer,string ocupation)
         {
             try
             {
-                int res = g_chambres.ModifierOcupation(chambre2changer.Chambre_ID, chambre2changer.Chambre_Ocupation);
+                int res = g_chambres.ModifierOcupation(chambre2changer.Chambre_ID, ocupation);
             }
             catch (Exception ex)
             {

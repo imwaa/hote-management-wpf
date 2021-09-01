@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Hotel.Views.CheckOut"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Hotel.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <DataGrid Name="dg_Chambre" HorizontalAlignment="Left" Height="354" Margin="23,25,0,0" VerticalAlignment="Top" Width="754"
+                  ItemsSource="{Binding Path=ListeDeChambres}" AutoGenerateColumns="False" SelectedItem="{Binding ChambreSelectionner, Mode=TwoWay}" SelectionChanged="DataGrid_SelectionChanged" IsReadOnly="True" FontSize="20">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Type Chambre"
+                                    Width="auto"
+                                    Binding="{Binding Chambre_Type}" />
+                <DataGridTextColumn Header="Numero Chambre"
+                                    Width="auto"
+                                    Binding="{Binding Chambre_Num}" />
+                <DataGridTextColumn Header="Ocupation Chambre"
+                                    Width="auto"
+                                    Binding="{Binding Chambre_Ocupation}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Check-Out" HorizontalAlignment="Left" Height="49" Margin="606,391,0,0" VerticalAlignment="Top" Width="171" Background="#FF021A43" BorderBrush="White" Foreground="White" FontSize="18" Command="{Binding ModifyCommand}"/>
+    </Grid>
+</UserControl>

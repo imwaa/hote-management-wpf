@@ -315,7 +315,7 @@ namespace Hotel.ViewModels
                 {
                     /// ocupation chambre
                     ChambreData.Chambre_Ocupation = "occupée";
-                    chambre_Service.changerOcupationChambre(ChambreData);
+                    chambre_Service.changerOcupationChambre(ChambreData,"ocupée");
 
                     ///detail_reservation
                     Detail_Reservation_Data.Service_ID = ServiceID;
