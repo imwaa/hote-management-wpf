@@ -94,7 +94,7 @@ namespace Hotel.ViewModels
             mail.Body = Message2send;
 
             smtp.Port = 587;
-            smtp.Credentials = new NetworkCredential("walid.salhibelkacem@student.hel.be", "Lidwa17893");
+            smtp.Credentials = new NetworkCredential("", "");
             smtp.EnableSsl = true;
             try
             {
