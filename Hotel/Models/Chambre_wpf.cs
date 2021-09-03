@@ -60,5 +60,13 @@ namespace Hotel.Models
             set { chambre_Prix = value; OnPropertyChanged("Chambre_Prix"); }
         }
 
+        private int chambre_Type_ID;
+
+        public int Chambre_Type_ID
+        {
+            get { return chambre_Type_ID;  }
+            set { chambre_Type_ID = value; OnPropertyChanged("Chambre_Type_ID"); }
+        }
+
     }
 }

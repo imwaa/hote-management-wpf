@@ -379,14 +379,14 @@ namespace Hotel.ViewModels
             fd.Blocks.Add(p);
 
             FileStream fs = new FileStream(@"D:\Facture"+ClientData.Nom+".rtf", FileMode.Create);
-
+            
             fs.Close();
             
 
             string filename = "D:\\Facture" + ClientData.Nom + ".rtf";
             EnvoyerMail(filename);
 
-            FactureReservation facture = new FactureReservation(fd,filename,ClientData.Mail);
+            FactureReservation facture = new FactureReservation(fd);
 
             facture.ShowDialog();
             
@@ -410,7 +410,7 @@ namespace Hotel.ViewModels
 
 
             smtp.Port = 587;
-            smtp.Credentials = new NetworkCredential("walid.salhibelkacem@student.hel.be", "Lidwa17893");
+            smtp.Credentials = new NetworkCredential("", "");
             smtp.EnableSsl = true;
             try
             {

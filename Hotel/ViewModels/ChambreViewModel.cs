@@ -33,7 +33,11 @@ namespace Hotel.ViewModels
             chambreData = new Chambre_wpf();
             chambre_Service = new Chambre_Service();
             chambreSelectionner = new Chambre_wpf();
+            ChambreTypeObjet = new List<C_TypeChambre_>();
+            ListeTypeDeChambre = new List<string>();
+
             RecupererChambres();
+            recupererTypeChambre();
             ChambreData.Chambre_Ocupation = "disponible";
 
             /// Commandes
@@ -51,11 +55,20 @@ namespace Hotel.ViewModels
             set { chambreData = value; onPropertyChanged("ChambreData"); }
         }
 
+        
+
         private Chambre_wpf chambreSelectionner;
         public Chambre_wpf ChambreSelectionner
         {
             get { return chambreSelectionner; }
             set { chambreSelectionner = value; onPropertyChanged("ChambreSelectionner"); }
+        }
+
+        private ChambreType_wpf chambreTypeData;
+        public ChambreType_wpf ChambreTypeData
+        {
+            get { return chambreTypeData; }
+            set { chambreTypeData = value; onPropertyChanged("ChambreSelectionner"); }
         }
 
         #region Methode qui clear la variable ChambreData
@@ -213,5 +226,70 @@ namespace Hotel.ViewModels
         }
 
         #endregion
+
+
+        #region Methode permettant d'ajouter des chambre Type dans la comboBox
+
+        //private ObservableCollection<ChambreType_wpf> listeTypeDeChambre;
+
+        //public ObservableCollection<ChambreType_wpf> ListeTypeDeChambre
+        //{
+        //    get { return listeTypeDeChambre; }
+        //    set { listeTypeDeChambre = value; onPropertyChanged("ListeTypeDeChambre"); }
+        //}
+
+        private List<string> myVlisteTypeDeChambrear;
+
+
+
+        public List<string> ListeTypeDeChambre
+        {
+            get { return myVlisteTypeDeChambrear; }
+            set { myVlisteTypeDeChambrear = value; onPropertyChanged("ListeTypeDeChambre"); }
+        }
+
+        private string chambreTypeSelectionner;
+        public string ChambreTypeSelectionner
+        {
+            get { return chambreTypeSelectionner; }
+            set { chambreTypeSelectionner = value; onPropertyChanged("ChambreTypeSelectionner"); }
+        }
+        public void recupererIdChambreType()
+        {
+            foreach (C_TypeChambre_ chambreType in chambreTypeObjet)
+            {
+                if (chambreType.Type_De_Chambre == ChambreTypeSelectionner)
+                {
+                    ChambreData.Chambre_Type_ID = chambreType.Chambre_Type_ID;
+                    break;
+                }
+            }
+        }
+
+
+
+        private List<C_TypeChambre_> chambreTypeObjet;
+
+        public List<C_TypeChambre_> ChambreTypeObjet
+        {
+            get { return chambreTypeObjet; }
+            set { chambreTypeObjet = value; onPropertyChanged("ChambreTypeObjet"); }
+        }
+
+
+        public void recupererTypeChambre()
+        {
+            chambreTypeObjet = chambre_Service.recupererTypeChambre();
+
+            foreach (C_TypeChambre_ chambreType in chambreTypeObjet)
+            {
+                //ChambreType_wpf tmp = new ChambreType_wpf();
+                //tmp = Mapping.Map(chambreType, tmp);
+                ListeTypeDeChambre.Add(chambreType.Type_De_Chambre);
+            }
+        }
+
+        #endregion
+
     }
 }

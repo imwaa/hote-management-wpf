@@ -47,5 +47,10 @@ namespace Hotel.Views
             }
 
         }
+
+        private void ChambreType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            chambreViewModel.recupererIdChambreType();
+        }
     }
 }

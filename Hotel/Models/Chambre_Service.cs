@@ -24,7 +24,7 @@ namespace Hotel.Models
         {
             try
             {
-                int res = g_chambres.Ajouter(Chambre2ajouter.Chambre_Type,Chambre2ajouter.Chambre_Num,Chambre2ajouter.Chambre_Ocupation,Chambre2ajouter.Chambre_Prix);
+                int res = g_chambres.Ajouter(Chambre2ajouter.Chambre_Type,Chambre2ajouter.Chambre_Num,Chambre2ajouter.Chambre_Ocupation,Chambre2ajouter.Chambre_Prix,Chambre2ajouter.Chambre_Type_ID);
 
                 if (res != 0)
                     return true;
@@ -72,7 +72,7 @@ namespace Hotel.Models
         {
             try
             {
-                int res = g_chambres.Modifier(Chambre2modifier.Chambre_ID, Chambre2modifier.Chambre_Type, Chambre2modifier.Chambre_Num, Chambre2modifier.Chambre_Ocupation, Chambre2modifier.Chambre_Prix);
+                int res = g_chambres.Modifier(Chambre2modifier.Chambre_ID, Chambre2modifier.Chambre_Type, Chambre2modifier.Chambre_Num, Chambre2modifier.Chambre_Ocupation, Chambre2modifier.Chambre_Prix,Chambre2modifier.Chambre_Type_ID);
                 if (res == 0)
                     return true;
                 else
@@ -124,6 +124,23 @@ namespace Hotel.Models
             try
             {
                 int res = g_chambres.ModifierOcupation(chambre2changer.Chambre_ID, ocupation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
+
+
+
+        public List<C_TypeChambre_> recupererTypeChambre()
+        {
+            try
+            {
+
+                return g_chambres.LireTypeChambre("");
+
             }
             catch (Exception ex)
             {

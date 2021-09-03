@@ -25,7 +25,7 @@ namespace Hotel.Views
         public string mail2envoyer;
         public FlowDocument document2envoyer;
         public string cheminAcces;
-        public FactureReservation(FlowDocument facture_gen,string cheminAccessFichier, string Mail)
+        public FactureReservation(FlowDocument facture_gen)
         {
             InitializeComponent();
 
